@@ -73,7 +73,7 @@ def create_missing_supplies():
     missing_ids = eve_typeIDs - ecm_typeIDs
 
     for typeID in missing_ids:
-        Supply.objects.create(typeID=typeID)
+        Supply.objects.create(typeID=typeID, type = Type.objects.get(pk=typeID))
 
     if missing_ids:
         duration = time.time() - start

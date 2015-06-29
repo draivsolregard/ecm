@@ -72,7 +72,7 @@ class SupplySourceAdmin(admin.ModelAdmin):
 #------------------------------------------------------------------------------
 class SupplyAdmin(admin.ModelAdmin):
     list_display = ['item_admin_display', 'price', 'auto_update', 'supply_source']
-    search_fields = ['item_admin_display']    
+    search_fields = ['type__typeName']    
 
 #------------------------------------------------------------------------------
 class PriceHistoryAdmin(admin.ModelAdmin):

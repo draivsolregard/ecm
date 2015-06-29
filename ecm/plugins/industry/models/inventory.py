@@ -47,6 +47,10 @@ class Supply(models.Model):
     price = models.FloatField(default=0.0)
     auto_update = models.BooleanField(default=True)
     supply_source = models.ForeignKey('SupplySource', related_name='prices', default=1)
+    #TODO: Refactor the above typeID or learn django/south better so that this reference
+    #is loaded during the migration
+    type = models.OneToOneField(Type);
+    
     __item = None
 
     def update_price(self, newPrice):
