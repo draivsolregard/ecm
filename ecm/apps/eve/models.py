@@ -156,6 +156,7 @@ class BlueprintType(models.Model):
     inventionTime = models.IntegerField(null=True, blank=True)
     maxProductionLimit = models.IntegerField(null=True, blank=True)
     inventionBaseChance = models.FloatField(null=True, blank=True)
+    product_is_purchased = models.BooleanField(default=False)
     __item = None
 
     def __getattr__(self, attr):
@@ -209,7 +210,8 @@ class BlueprintType(models.Model):
             mat_blueprint = mat.required_type.blueprint
             if mat_blueprint is not None:
                 blueprints.add(mat_blueprint)
-                if recurse:
+                #TODO: Stop recursing on things that are configured as product_is_purchased
+                if recurse and not mat_blueprint.product_is_purchased:
                     blueprints.update(mat_blueprint.get_involved_blueprints(recurse=True))
         return blueprints
 
@@ -364,7 +366,7 @@ class Type(models.Model):
         return self.typeName
 
     def __eq__(self, other):
-        return isinstance(other, Type) and other.typeID == self.typeID
+        return isinstance(other, Type) and other.typeID == self.type
 
     def __hash__(self):
         return self.typeID

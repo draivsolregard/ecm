@@ -60,7 +60,7 @@ class CatalogEntry(models.Model):
     def missing_blueprints(self, skip_invented=True):
         involved_bps = set()
         for bp in self.blueprint.get_involved_blueprints(recurse=True) | set([self.blueprint]):
-            if skip_invented and bp.product.metaGroupID == 2 and bp.parentBlueprintTypeID is not None:
+            if skip_invented and bp.product.metaGroupID == 2 and bp.parentBlueprintTypeID is not None or bp.product_is_purchased:
                 continue
             else:
                 involved_bps.add(bp)

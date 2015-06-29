@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
+encoding//ecm/apps/eve/migrations/0006_auto__add_field_blueprinttype_product_is_purchased.py=utf-8
+encoding//ecm/plugins/accounting/tasks/wallets.py=utf-8
 encoding/<project>=UTF-8

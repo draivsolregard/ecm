@@ -24,8 +24,11 @@ from ecm.apps.eve.models import Type, BlueprintType, BlueprintReq, CelestialObje
                                 Category, Group, MarketGroup, ControlTowerResource, SkillReq
 
 
+class BlueprintTypeAdmin(admin.ModelAdmin):
+    search_fields = ['type__typeName']
+
 admin.site.register(Type)
-admin.site.register(BlueprintType)
+admin.site.register(BlueprintType, BlueprintTypeAdmin)
 admin.site.register(MarketGroup)
 admin.site.register(BlueprintReq)
 admin.site.register(CelestialObject)
